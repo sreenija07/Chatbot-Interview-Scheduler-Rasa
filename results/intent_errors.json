@@ -1,0 +1,10 @@
+[
+  {
+    "text": "12-09-2020",
+    "intent": "getDates",
+    "intent_prediction": {
+      "name": "getSlot",
+      "confidence": 0.5412660837173462
+    }
+  }
+]

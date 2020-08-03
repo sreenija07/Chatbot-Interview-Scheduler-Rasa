@@ -1,0 +1,153 @@
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - option1
+  - option4
+  - option5
+  - getDates
+  - getSlot
+  - DateString
+  - PickSlotOnDay1
+  - confirmSlot1
+  - askForSlotTimeChange
+  - changeDateInterview
+  - changeSlotInterview
+  - otherDays
+  - clear
+  - userName
+  - out_of_scope
+
+
+entities:
+  - FromDate
+  - ToDate
+  - SelectDate1
+  - SelectDate2
+  - SelectDate3
+  - DateExtracted
+  - slotSelected
+  - changedDate
+  - name
+
+  
+  
+slots:
+  FromDate:
+    type: text
+  ToDate:
+    type: text
+  RequireNextDay:
+     type: bool
+  DateRange:
+      type: list
+  SelectDate1:
+    type: text
+  SelectDate2:
+    type: text
+  SelectDate3:
+    type: text
+  daySelected:
+    type: text
+  slotSelected:
+    type: text
+  changedDate:
+    type: text
+  isChangeDate:
+    type: bool
+  changedSlot:
+    type: text
+  isChangeSlot:
+    type: bool
+  name:
+    type: text
+  dateRangeGiven:
+    type: text
+  position:
+    type: text
+  emp:
+    type: text
+  company:
+    type: text
+     
+
+actions:
+- clearSlots
+- utter_greet
+- utter_close_chat
+- ask_for_available_dates
+- updated_records_message
+- confirm_slot
+- ActionGetDateRange
+- ActionSelectNextDate
+- ActionUtterUpdatedDates
+- ActionAskSlots
+- ActionSlotSelect
+- utter_confirm_slot
+- utter_confirm_slot2
+- ActionChangeDateSelectWithoutDateRange
+- ActionChangeDateSelect
+- ActionSetChangedDate
+- updateInterviewDate
+- updateInterviewSlot
+- getAllAvailableOtherDays
+- utter_name
+- verifiyUserName
+
+responses:
+  utter_greet:
+  - text: "{name}, Howdy I am your hirepal ( fueled by hirextra.com) ,like to interface with you for {position}  and conceivable Meeting with our customer {company}, are you prepared to take a meeting by means of conference call on between {FromDate} to {ToDate}?"
+    buttons:
+    - text: "No , I am not interested in this role now"
+      payload: "/option1"
+    - text: "Sorry, I am not available now – I got a job already"
+      payload: "/option1"
+    - text: "Sorry, I am not applied for this job, please delete CV from your system"
+      payload: "/option1"
+    - text: "Yes I am interested but not on those dates"
+      payload: "/option4"
+    - text: "Yes Available"
+      payload: "/option5"
+      
+  utter_for_available_dates:
+    - text: "please let us know possible date range when you are available"
+     
+  utter_updated_records_message:
+     - text: "records updated"
+     
+  utter_confirm_slot:
+  - text: "<first name> , your meeting is affirmed on date {daySelected} with < employer name > by Meeting Board at {slotSelected} , we wish you an incredible accomplishment in meet and in the event that you adjust your perspective and like to reschedule for some other meeting date and time."
+    buttons:
+    - text: "please here so hirepal"
+      payload: "http://website.com"
+    
+  utter_confirm_slot2:
+  - text: "touch with you for meet reschedule date and time , we wish all of you good karma and achievement in your meeting. A email and SMS will be sent you based on information that is available in our records.
+  Good Luck.
+  Bye."
+  
+  utter_if_No_Dates_And_Slots:
+    - text: "<first name > unfortunately our system is not showing any available time above those displayed"  
+
+  utter_close_chat:
+      - text: "we update our records, that you are not any more intrigued for this position.
+                We want you to enjoy all that life has to offer – Much obliged"
+                
+  utter_option_to_change_date_or_only_time:
+      - text: "<first name > are you sure that you want to change interview date and time or only interview time"
+        buttons:
+            - text: "Interview date and time"
+              payload: "/changeDateInterview"
+            - text: "Interview time only"
+              payload: "/changeSlotInterview"
+      
+  utter_name:
+    - text: "Please provide your name , for verification"
+        
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
